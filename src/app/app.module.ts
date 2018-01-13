@@ -1,8 +1,10 @@
+import { MonitoringService } from './monitoring.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { MonitoringErrorHandler } from './error.handler';
 
 
 @NgModule({
@@ -12,7 +14,13 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    MonitoringService,
+    {
+      provide: ErrorHandler,
+      useClass: MonitoringErrorHandler
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
